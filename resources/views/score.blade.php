@@ -81,7 +81,7 @@
                 <div class="title m-b-md">
                     <span style="color: red">University: {{$university_score}}</span><br>
                     <span style="color: green">Our Solution: {{$our_score}}</span><br>
-                    Sum: {{($our_score+$university_score)}}
+                    Sum: {{$sum}}
                 </div>
 
             </div>

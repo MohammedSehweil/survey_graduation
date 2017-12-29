@@ -18,15 +18,11 @@ class SchController extends Controller
     public function index(){
 
         $student_id = Student::inRandomOrder()->first()->id;
-            $student_course_uni = ScheduleUni::all()->where('STUDENT_NUMBER','=',$student_id)->pluck('time_slot','time_slot')->toArray();
+        $student_course_uni = ScheduleUni::all()->where('STUDENT_NUMBER','=',$student_id)->pluck('time_slot','time_slot')->toArray();
         $student_course_our = Solution::join('course_table','course_table.id','=','solution.course_id')
             ->join('student_course_table','student_course_table.course_id','=','solution.course_id')
             ->where('student_course_table.STUDENT_NUMBER','=',$student_id)->pluck('time_slot','time_slot')->toArray();
 
-        asort($student_course_uni);
-        asort($student_course_our);
-
-//        dd($student_course_uni,$student_course_our);
 
         return view('test',compact('student_course_uni','student_course_our','student_id'));
     }
@@ -50,11 +46,21 @@ class SchController extends Controller
         $score->save();
     }
 
-    public function score(){
+    public function score($pass){
         $score = Score::all()->first();
-        $university_score = $score->university_score;
-        $our_score = $score->our_score;
-        return view('score',compact('university_score','our_score'));
+        $passsword = Score::find(2)->university_score;
+        if ($passsword ==$pass){
+            $university_score = $score->university_score;
+            $our_score = $score->our_score;
+            $sum = $university_score + $our_score;
+        }
+        else{
+            $university_score = 'Hidden';
+            $our_score = 'Hidden';
+            $sum = 'Hidden';
+        }
+
+        return view('score',compact('university_score','our_score','sum'));
     }
 
 

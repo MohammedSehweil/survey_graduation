@@ -12,7 +12,7 @@
 */
 Route::get('test','SchController@index');
 Route::post('save','SchController@save');
-Route::get('score','SchController@score');
+Route::get('score/{pass}','SchController@score');
 
 
 
