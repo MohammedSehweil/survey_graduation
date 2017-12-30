@@ -113,7 +113,7 @@
                     var val = $('input[name=optradio]:checked').val();
                     e.preventDefault();
                     $.ajax({
-                        url: '{{url('/')}}/save',
+                        url: 'https://guarded-refuge-82765.herokuapp.com/save',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
