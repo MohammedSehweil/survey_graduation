@@ -17,76 +17,78 @@
         <script type="text/javascript" src="http://mecore.localhost/themes/admin/assets/js/core/libraries/jquery.min.js"></script>
 
         <!-- Styles -->
-        <style>
-</style>
+    <style>
+        .table {
+            width: 100%;
+        }
+    </style>
     </head>
     <body>
+    <div class="container">
+        <h2 style="color: green">Mohammed Sehweil, Mahmoud Abdelkarem, Ahmad Zaid</h2>
+        <h2 style="color: red">Student ID: {{$student_id}}</h2>
+    </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Schedule 1</h2>
+                    <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th >Day</th>
+                                <th >8 - 11</th>
+                                <th >11 - 2</th>
+                                <th >2 - 5</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @for($i = 1 ; $i < 13 ; $i++)
+                                <tr>
+                                    <td>Day {{$i}}</td>
 
-    <div class="flex-center position-ref full-height">
-            <div class="container">
-                <h2 style="color: green">Mohammed Sehweil, Mahmoud Abdelkarem, Ahmad Zaid</h2>
-                <h2 style="color: red">Student ID: {{$student_id}}</h2>
+                                    @for($j = 1 ; $j < 4 ; $j++)
 
-            </div>
-            <div class="container">
-                <h2>Schedule 1</h2>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Day</th>
-                        <th>8 - 11</th>
-                        <th>11 - 2</th>
-                        <th>2 - 5</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @for($i = 1 ; $i < 13 ; $i++)
+                                        @if(isset($student_course_uni[($i-1)*3 + $j]))
+                                            <td class="info">Exam</td>
+                                        @else
+                                            <td>-</td>
+                                        @endif
+                                    @endfor
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                    <h2>Schedule 2</h2>
+                    <table class="table table-bordered">
+                        <thead>
                         <tr>
-                            <td>Day {{$i}}</td>
+                            <th>Day</th>
+                            <th>8 - 11</th>
+                            <th>11 - 2</th>
+                            <th>2 - 5</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @for($i = 1 ; $i < 13 ; $i++)
+                            <tr>
+                                <td>Day {{$i}}</td>
 
                             @for($j = 1 ; $j < 4 ; $j++)
 
-                                @if(isset($student_course_uni[($i-1)*3 + $j]))
-                                    <td class="info">A</td>
-                                @else
-                                    <td>-</td>
-                                @endif
-                            @endfor
-                        </tr>
-                    @endfor
-                    </tbody>
-                </table>
-            </div>
-
-
-            <div class="container">
-                <h2>Schedule 2</h2>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Day</th>
-                        <th>8 - 11</th>
-                        <th>11 - 2</th>
-                        <th>2 - 5</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @for($i = 1 ; $i < 13 ; $i++)
-                        <tr>
-                            <td>Day {{$i}}</td>
-
-                        @for($j = 1 ; $j < 4 ; $j++)
-
-                                @if(isset($student_course_our[($i-1)*3 + $j]))
-                                    <td class="info">A</td>
-                                @else
-                                    <td>-</td>
-                                @endif
-                            @endfor
-                        </tr>
-                    @endfor
-                    </tbody>
-                </table>
+                                    @if(isset($student_course_our[($i-1)*3 + $j]))
+                                        <td class="info">Exam</td>
+                                    @else
+                                        <td>-</td>
+                                    @endif
+                                @endfor
+                            </tr>
+                        @endfor
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
             </div>
 
             <div class="container">
@@ -98,7 +100,7 @@
                     <label><input type="radio" name="optradio" class=".input-lg" value="2">Schedule 2</label>
                 </div>
                 <button type="button" id="answer" class="btn btn-primary btn-block"> Submit </button>
-                <input type="button" id="thanks" class="btn btn-danger btn-block hidden" value="Yeslmo ya warde .. To fill another one , refresh the page " href="{{url('/')}}/test"></input>
+                <input type="button" id="thanks" class="btn btn-danger btn-block hidden" onclick="location.href='/test'" value="Yeslmo ya warde .. To fill another one , refresh the page " href="{{url('/')}}/test"></input>
                 <br><br>
             </div>
         </div>
@@ -115,7 +117,8 @@
                         },
                         type: 'post',
                         data: {
-                            'option':val
+                            'option':val,
+                            'randNum': {{$randNum}}
                         },
                         success: function(result){
                         },
