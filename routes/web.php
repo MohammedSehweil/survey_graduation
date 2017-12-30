@@ -10,13 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('test','SchController@index');
+
+Route::get('/','SchController@index');
 Route::post('save','SchController@save');
 Route::get('score/{pass}','SchController@score');
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>BZU Exams</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -27,8 +27,8 @@
     </head>
     <body>
     <div class="container">
-        <h2 style="color: green">Mohammed Sehweil, Mahmoud Abdelkarem, Ahmad Zaid</h2>
-        <h2 style="color: red">Student ID: {{$student_id}}</h2>
+        <h4 style="color: green">Examination timetabling graduation project done by Mahmoud Abdelkarim, Mohammad Sehweil, Ahmad Zaid</h4>
+        <h4 style="color: red">Student ID: {{$student_id}}</h4>
     </div>
         <div class="container-fluid">
             <div class="row">
