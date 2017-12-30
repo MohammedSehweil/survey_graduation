@@ -19,8 +19,10 @@ class SchController extends Controller
 
         $randNum = rand(1,2);
         logger('randNum : ' . $randNum);
-        $student_id = Student::inRandomOrder()->first()->id;
-        $student_course_uni = ScheduleUni::all()->where('STUDENT_NUMBER','=',$student_id)->pluck('time_slot','time_slot')->toArray();
+        do{
+            $student_id = Student::inRandomOrder()->first()->id;
+            $student_course_uni = ScheduleUni::all()->where('STUDENT_NUMBER','=',$student_id)->pluck('time_slot','time_slot')->toArray();
+        }while (sizeof($student_course_uni) != 0);
         $student_course_our = Solution::join('course_table','course_table.id','=','solution.course_id')
             ->join('student_course_table','student_course_table.course_id','=','solution.course_id')
             ->where('student_course_table.STUDENT_NUMBER','=',$student_id)->pluck('time_slot','time_slot')->toArray();
