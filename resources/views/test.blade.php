@@ -102,7 +102,7 @@
                     <label><input type="radio" name="optradio" class=".input-lg" value="2">Schedule 2</label>
                 </div>
                 <button type="button" id="answer" class="btn btn-primary btn-block"> Submit </button>
-                <input type="button" id="thanks" class="btn btn-danger btn-block hidden" onclick="location.href='/test'" value="Yeslmo ya warde .. To fill another one , refresh the page " href="{{url('/')}}/test"></input>
+                <input type="button" id="thanks" class="btn btn-danger btn-block hidden" onclick="location.href='/'" value="Yeslmo ya warde .. To fill another one , refresh the page " href="{{url('/')}}/test"></input>
                 <br><br>
             </div>
         </div>
